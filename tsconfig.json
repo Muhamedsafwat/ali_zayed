@@ -3,8 +3,10 @@
     "paths": {
       "@payload-config": [
         "./payload.config.ts"
-      ]
+      ],
+      "@/*": ["./src/*"]
     },
+
     "target": "ES2017",
     "lib": [
       "dom",

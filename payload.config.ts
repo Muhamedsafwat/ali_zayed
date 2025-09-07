@@ -4,13 +4,16 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { buildConfig } from "payload";
 
 import Media from "./src/app/(payload)/_collections/Media";
+//import collections
+import SevenVideos from "./src/app/(payload)/_collections/SevenVideos";
+import SevenVideoCategories from "./src/app/(payload)/_collections/SevenVideoCategories";
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
   // Define and configure your collections in this array
-  collections: [Media],
+  collections: [Media, SevenVideoCategories, SevenVideos],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || "dlkfjdslkfjdlkfj",

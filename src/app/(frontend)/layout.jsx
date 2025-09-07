@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
-
 import { Cairo } from "next/font/google"; // استخدم خط مدعوم
 import "./globals.css";
+
+import NavBar from "./_common/NavBar";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -105,9 +105,9 @@ export default async function layout({ children }) {
       </head>
       <body
         data-theme="mytheme"
-        className={`${cairo.className} antialiased overscroll-none bg-white text-[#333] w-screen overflow-x-hidden`}
+        className={`${cairo.className} antialiased overscroll-none bg-[#111] text-white w-screen min-h-screen overflow-x-hidden`}
       >
-        {/* <Header /> */}
+        <NavBar />
         <main>{children}</main>
         {/* <Footer  /> */}
       </body>

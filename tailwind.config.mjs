@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: "",
         primary: "#B4151B",
         secondary: "#003B56",
       },
