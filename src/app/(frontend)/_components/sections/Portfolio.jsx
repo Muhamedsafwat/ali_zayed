@@ -44,7 +44,7 @@ function Portfolio({ videos = [], categories = [] }) {
   // If no data is available, show a fallback
   if (safeVideos.length === 0 || safeCategories.length === 0) {
     return (
-      <div className="max-w-7xl mx-auto py-20 px-4 w-full left-0 top-0">
+      <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
         <div className="text-center py-12">
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Loading content...
@@ -55,8 +55,10 @@ function Portfolio({ videos = [], categories = [] }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-20 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-6xl text-center mb-12 font-bold dark:text-white">
+    <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
+      <p className=" tracking-wider text-center uppercase">Portfolio</p>
+
+      <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
         See my videos
       </h1>
 

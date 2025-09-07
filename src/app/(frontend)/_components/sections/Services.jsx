@@ -4,9 +4,12 @@ import GlowingEffect from "@/app/(frontend)/_common/ui/GlowingEffect";
 
 function Services() {
   return (
-    <div className="max-w-7xl mx-auto py-20 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-6xl text-center mb-12 font-bold dark:text-white">
-        What I create
+    <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0 overflow-x-hidden">
+      <p className=" tracking-wider text-center uppercase">
+        Your one stop shop
+      </p>
+      <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
+        Services
       </h1>
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 xl:max-h-[34rem] mt-3">
