@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload";
 
-const SevenVideoCategories: CollectionConfig = {
-  slug: "seven-video-categories",
+const Categories: CollectionConfig = {
+  slug: "categories",
   labels: {
     singular: "Category",
     plural: "Categories",
@@ -11,7 +11,6 @@ const SevenVideoCategories: CollectionConfig = {
   },
   admin: {
     useAsTitle: "name",
-    group: "Seven",
   },
   fields: [
     {
@@ -34,4 +33,4 @@ const SevenVideoCategories: CollectionConfig = {
   ],
 };
 
-export default SevenVideoCategories;
+export default Categories;

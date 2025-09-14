@@ -8,16 +8,14 @@ import Testimonials from "./_components/sections/Testimonials";
 
 export default async function Home() {
   const videosRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/seven-videos?limit=1000&depth=2`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/videos?limit=1000&depth=2`
   );
   const catRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/seven-video-categories`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
   );
 
   const { docs: videos } = await videosRes.json();
   const { docs: categories } = await catRes.json();
-
-  console.log(videos);
 
   return (
     <>

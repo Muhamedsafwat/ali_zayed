@@ -105,7 +105,7 @@ export default async function layout({ children }) {
       </head>
       <body
         data-theme="mytheme"
-        className={`${cairo.className} antialiased overscroll-none bg-[#111] text-white max-w-screen min-h-screen overflow-x-hidden`}
+        className={`${cairo.className} antialiased overscroll-none bg-[#111] text-white max-w-[100vwz] min-h-screen overflow-x-hidden`}
       >
         <NavBar />
         <main>{children}</main>
