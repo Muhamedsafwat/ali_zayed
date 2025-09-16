@@ -65,14 +65,14 @@ function Portfolio({ videos = [], categories = [] }) {
       <div className="flex flex-col lg:flex-row justify-between relative gap-8 lg:gap-20">
         <aside className="lg:basis-1/5 h-fit lg:sticky lg:top-20 order-2 lg:order-1">
           <ul className="space-y-2">
-            <p className="text-lg mb-5 font-semibold border-b-blue-500/30 border-b-2 pb-3 shadow-lg shadow-blue-500/20">
+            <p className="text-lg mb-5 font-semibold border-b-purple-500/30 border-b-2 pb-3 shadow-lg shadow-purple-500/20">
               Categories:
             </p>
             <li
               onClick={() => handleCategoryChange({})}
-              className={`pl-0 hover:pl-3 py-3 px-5 bg-gradient-to-r hover:from-blue-500/20 to-transparent duration-150 rounded-md border border-blue-500 border-opacity-0 hover:border-opacity-50 cursor-pointer transition-all ${
+              className={`pl-0 hover:pl-3 py-3 px-5 bg-gradient-to-r hover:from-purple-500/20 to-transparent duration-150 rounded-md border border-purple-500 border-opacity-0 hover:border-opacity-50 cursor-pointer transition-all ${
                 !selectedCategory?.name
-                  ? "from-blue-500/20 border-opacity-50 bg-blue-500/10 pl-3"
+                  ? "from-purple-500/20 border-opacity-50 bg-purple-500/10 pl-3"
                   : ""
               }`}
             >
@@ -87,10 +87,10 @@ function Portfolio({ videos = [], categories = [] }) {
               <li
                 key={index}
                 onClick={() => handleCategoryChange(item)}
-                className={`pl-0 hover:pl-3 py-3 px-5 bg-gradient-to-r hover:from-blue-500/20 to-transparent duration-150 rounded-md border border-blue-500 border-opacity-0 hover:border-opacity-50 cursor-pointer transition-all ${
+                className={`pl-0 hover:pl-3 py-3 px-5 bg-gradient-to-r hover:from-purple-500/20 to-transparent duration-150 rounded-md border border-purple-500 border-opacity-0 hover:border-opacity-50 cursor-pointer transition-all ${
                   !!selectedCategory.name &&
                   selectedCategory?.name === item?.name
-                    ? "from-blue-500/20 border-opacity-50 bg-blue-500/10 pl-3"
+                    ? "from-purple-500/20 border-opacity-50 bg-purple-500/10 pl-3"
                     : ""
                 }`}
               >

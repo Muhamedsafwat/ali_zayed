@@ -1,8 +1,26 @@
 "use client";
-import { Box, Settings } from "lucide-react";
-import GlowingEffect from "@/app/(frontend)/_common/ui/GlowingEffect";
+import { useRef, useState } from "react";
+import Image from "next/image";
+
+import Slider from "react-slick";
+import { ArrowRight } from "lucide-react";
 
 function Services() {
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  let sliderRef = useRef(null);
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: true,
+    dots: false,
+    arrows: false,
+    verticalSwiping: true,
+    fade: true,
+    beforeChange: (current, next) => setSlideIndex(next),
+  };
   return (
     <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0 overflow-x-hidden">
       <p className=" tracking-wider text-center uppercase">
@@ -11,83 +29,96 @@ function Services() {
       <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
         Services
       </h1>
-
-      <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 xl:max-h-[34rem] mt-3">
-        <GridItem
-          icon={<Box className="h-4 w-4 text-black dark:text-neutral-400" />}
-          title="Reels"
-          description="Engaging Instagram and TikTok reels that capture attention and drive engagement."
-        />
-        <GridItem
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Ads & Youtube videos"
-          description="Compelling advertising content and YouTube videos that drive conversions and build brand awareness."
-        />
-        <GridItem
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Motion graphics"
-          description="Dynamic motion graphics and visual effects that enhance your content."
-        />
-        <GridItem
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Animations"
-          description="Custom 2D and 3D animations that bring your concepts to life."
-        />
-        <GridItem
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Educational videos"
-          description="Informative and engaging educational videos that simplify complex topics."
-        />
-        <GridItem
-          icon={
-            <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
-          }
-          title="Motion Graphic reels"
-          description="Eye-catching motion graphic reels designed for social media platforms."
-        />
-      </ul>
+      <div className="flex items-start gap-10">
+        <div className="basis-1/5">
+          <ul>
+            {services.map((item, index) => (
+              <li
+                key={`service_title_${index}`}
+                className={`py-5 text-xl border-b hover:border-purple-500 duration-150 cursor-pointer ${index == slideIndex ? "border-purple-500" : "border-transparent"}`}
+                onClick={() => sliderRef.slickGoTo(index)}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="slider-container basis-4/5">
+          <Slider
+            ref={(slider) => {
+              sliderRef = slider;
+            }}
+            {...settings}
+          >
+            {services.map((item, index) => (
+              <div key={`service_${index}`}>
+                <div className="px-20">
+                  <div className="relative w-full aspect-video mb-5">
+                    <Image
+                      alt={item.title}
+                      fill
+                      src={item.image}
+                      className="object-contain"
+                    />
+                  </div>
+                  <ul>
+                    {item.description.map((item, index) => (
+                      <li
+                        key={`service_detail_${index}`}
+                        className="flex items-center gap-1 my-1"
+                      >
+                        <ArrowRight />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
     </div>
   );
 }
 
-const GridItem = ({ area, icon, title, description }) => {
-  return (
-    <li className={`min-h-[14rem] list-none ${area} duration-300`}>
-      <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3">
-        <GlowingEffect
-          spread={40}
-          glow={true}
-          disabled={false}
-          proximity={64}
-          inactiveZone={0.01}
-        />
-        <div className="border-0.75 relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-          <div className="relative flex flex-1 flex-col justify-between gap-3">
-            <div className="w-fit rounded-lg border border-gray-600 p-2">
-              {icon}
-            </div>
-            <div className="space-y-3">
-              <h3 className="-tracking-4 pt-0.5 font-sans text-xl/[1.375rem] font-semibold text-balance text-black md:text-2xl/[1.875rem] dark:text-white">
-                {title}
-              </h3>
-              <h2 className="font-sans text-sm/[1.125rem] text-black md:text-base/[1.375rem] dark:text-neutral-400 [&_b]:md:font-semibold [&_strong]:md:font-semibold">
-                {description}
-              </h2>
-            </div>
-            {/* <ServiceModal videos={videos} /> */}
-          </div>
-        </div>
-      </div>
-    </li>
-  );
-};
-
 export default Services;
+
+const services = [
+  {
+    title: "Video Editing",
+    description: [
+      "Offline & Online Editing",
+      "Skilled in Premiere Pro, Final Cut Pro X, and DaVinci Resolve",
+      "Support with narrative and conceptual builds by providing visual treatments",
+    ],
+    image: "/images/services/editing.png",
+  },
+  {
+    title: "Motion Design",
+    description: [
+      "Skilled in After Effects and complimentary Adobe Suite products",
+      "Supports with concept generation and art direction",
+      "Visual effects pipeline experience",
+    ],
+    image: "/images/services/motion.png",
+  },
+  {
+    title: "Color Grading",
+    description: [
+      "Proficiency in DaVinci Resolve",
+      "Visual style creation and shot matching",
+      "Skin tone correction",
+    ],
+    image: "/images/services/color.png",
+  },
+  {
+    title: "Post Producing",
+    description: [
+      "Comprehensive project planning and coordination",
+      "Effective resource and budget management",
+      "Successful stakeholder collaboration",
+    ],
+    image: "/images/services/post.png",
+  },
+];

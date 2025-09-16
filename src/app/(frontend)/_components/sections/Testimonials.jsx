@@ -28,7 +28,7 @@ const Testimonials = () => {
   return (
     <section
       id="why-founders"
-      className="relative isolate overflow-hidden scroll-mt-20 bg-black px-6 py-10 md:py-24  lg:px-8"
+      className="relative isolate overflow-hidden scroll-mt-20 px-6 py-10 md:py-24  lg:px-8"
     >
       <p className=" tracking-wider text-center uppercase">Testimonials</p>
 
@@ -37,7 +37,7 @@ const Testimonials = () => {
       </h2>
 
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.gray.700),black)] opacity-20"></div>
-      <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-black shadow-xl shadow-gray-800/90 ring-1 ring-indigo-950 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+      <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] shadow-xl shadow-gray-800/90 ring-1 ring-indigo-950 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
       {testimonials.length > 1 ? (
         <div className="mx-auto max-w-2xl lg:max-w-4xl">
           <Slider

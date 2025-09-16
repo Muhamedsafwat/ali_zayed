@@ -2,6 +2,7 @@ import { Cairo } from "next/font/google"; // استخدم خط مدعوم
 import "./globals.css";
 
 import NavBar from "./_common/NavBar";
+import Footer from "./_common/Footer";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -109,7 +110,7 @@ export default async function layout({ children }) {
       >
         <NavBar />
         <main>{children}</main>
-        {/* <Footer  /> */}
+        <Footer />
       </body>
     </html>
   );
