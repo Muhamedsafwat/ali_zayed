@@ -2,7 +2,7 @@ import React from "react";
 
 const MapSection = () => {
   return (
-    <section className="max-w-6xl mx-auto p-20 bg-black rounded-t-3xl flex justify-between text-white">
+    <section className="max-w-6xl mx-auto rounded-t-3xl flex gap-12 items-center justify-between text-white">
       <div className="flex-1">
         <div className="flex items-center gap-2">
           <div className="bg-blue-600 aspect-square w-3 rounded-full" />

@@ -48,12 +48,8 @@ export function SocialMediaLinks() {
     },
   ];
   return (
-    <div className="flex items-center justify-center mt-64 w-full">
-      <FloatingDock
-        // only for demo, remove for production
-        mobileClassName="translate-y-20"
-        items={links}
-      />
+    <div className="flex items-center justify-center w-full -translate-y-8">
+      <FloatingDock items={links} />
     </div>
   );
 }

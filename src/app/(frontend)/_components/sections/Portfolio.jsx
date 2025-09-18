@@ -5,11 +5,16 @@ import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { getDriveThumbnail } from "@/lib/utils";
 import VideoModal from "@/app/(frontend)/_common/VideoModal";
 
-function Portfolio({ videos = [], categories = [] }) {
+function Portfolio({
+  videos = [],
+  categories = [],
+  itemsPerPage = 9,
+  title,
+  subTitle,
+}) {
   const [selectedCategory, setSelectedCategory] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const itemsPerPage = 9;
 
   // Ensure videos and categories are arrays and have the expected structure
   const safeVideos = Array.isArray(videos) ? videos : [];
@@ -56,10 +61,10 @@ function Portfolio({ videos = [], categories = [] }) {
 
   return (
     <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
-      <p className=" tracking-wider text-center uppercase">Portfolio</p>
+      <p className=" tracking-wider text-center uppercase">{title}</p>
 
       <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
-        See my videos
+        {subTitle}
       </h1>
 
       <div className="flex flex-col lg:flex-row justify-between relative gap-8 lg:gap-20">

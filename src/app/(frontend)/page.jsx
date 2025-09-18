@@ -28,7 +28,12 @@ export default async function Home() {
       <ShowReel />
       <SocialProof />
       <Services />
-      <Portfolio videos={videos} categories={categories} />
+      <Portfolio
+        videos={videos}
+        categories={categories}
+        title="Portfolio"
+        subTitle="See My Videos"
+      />
       <Projects projects={projects} />
       <Testimonials />
       <CTA />
