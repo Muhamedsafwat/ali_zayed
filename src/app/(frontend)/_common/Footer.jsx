@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="p-4 bg-gradient-to-t from-purple-700/20">
+    <footer className="p-4 bg-gradient-to-t from-purple-700/10">
       <div className="mx-auto max-w-screen-xl text-center">
         <Link
           href="/"

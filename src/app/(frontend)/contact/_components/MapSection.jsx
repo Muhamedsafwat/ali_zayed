@@ -9,10 +9,10 @@ const MapSection = () => {
           <p className="tracking-widest">Our space</p>
         </div>
         <h2 className="mt-8 text-5xl tracking-wider leading-[1.1]">
-          Where you can <br /> find us ?
+          Where you can <br /> find me ?
         </h2>
         <p className="mt-10 text-lg">
-          Our location offers a convenient and welcoming space for visitors and
+          My location offers a convenient and welcoming space for visitors and
           clients alike have to say
         </p>
       </div>
