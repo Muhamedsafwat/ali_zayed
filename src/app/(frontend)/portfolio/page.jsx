@@ -3,19 +3,46 @@ import Portfolio from "../_components/sections/Portfolio";
 import Projects from "../_components/sections/Projects";
 import PageHeader from "../_common/PageHeader";
 const page = async () => {
-  const videosRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/videos?limit=1000&depth=2`
-  );
-  const catRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
-  );
-  const projectsRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects?depth=2`
-  );
+  // Initialize with empty arrays as fallbacks
+  let videos = [];
+  let categories = [];
+  let projects = [];
 
-  const { docs: videos } = await videosRes.json();
-  const { docs: categories } = await catRes.json();
-  const { docs: projects } = await projectsRes.json();
+  try {
+    const videosRes = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/videos?limit=1000&depth=2`
+    );
+    if (videosRes.ok) {
+      const videosData = await videosRes.json();
+      videos = videosData.docs || [];
+    }
+  } catch (error) {
+    console.warn("Failed to fetch videos:", error);
+  }
+
+  try {
+    const catRes = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
+    );
+    if (catRes.ok) {
+      const categoriesData = await catRes.json();
+      categories = categoriesData.docs || [];
+    }
+  } catch (error) {
+    console.warn("Failed to fetch categories:", error);
+  }
+
+  try {
+    const projectsRes = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects?depth=2`
+    );
+    if (projectsRes.ok) {
+      const projectsData = await projectsRes.json();
+      projects = projectsData.docs || [];
+    }
+  } catch (error) {
+    console.warn("Failed to fetch projects:", error);
+  }
 
   return (
     <div>
