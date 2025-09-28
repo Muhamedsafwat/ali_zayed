@@ -44,7 +44,9 @@ function Portfolio({
     setCurrentPage(newPage);
   };
 
-  const handleVideoClick = (video) => {};
+  const handleVideoClick = (video) => {
+    console.log(video);
+  };
 
   // If no data is available, show a fallback
   if (safeVideos.length === 0 || safeCategories.length === 0) {
@@ -142,19 +144,19 @@ function Portfolio({
                   <ul className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
                     {paginatedVideos.map((item, index) => (
                       <div
-                        key={`${item?.link || item?.url || index}-${currentPage}-${index}`}
+                        key={`${item?.link || index}-${currentPage}-${index}`}
                         className="w-full relative h-80 group cursor-pointer"
                         onClick={() => handleVideoClick(item)}
                       >
                         <img
-                          src={getDriveThumbnail(item?.link || item?.url)}
+                          src={getDriveThumbnail(item?.link)}
                           alt={`${item?.category?.name || "Video"} thumbnail`}
                           className="object-cover w-full h-full rounded-lg transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <VideoModal
-                              url={item?.link || item?.url}
+                              url={item?.link}
                               aspectRatio={
                                 item?.category?.aspect_ratio || "16/9"
                               }

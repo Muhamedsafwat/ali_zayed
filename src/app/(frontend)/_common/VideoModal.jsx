@@ -11,7 +11,7 @@ import {
 
 import { urlToSrc } from "@/lib/utils";
 
-function VideoModal({ url }) {
+function VideoModal({ url, aspectRatio }) {
   return (
     <div className="flex items-center justify-center mr-auto">
       <Modal>
@@ -31,7 +31,7 @@ function VideoModal({ url }) {
 
             <iframe
               src={urlToSrc(url)}
-              className="max-h-[70vh] aspect-[16/9] rounded-lg mx-auto"
+              className={`h-[70vh] ${aspectRatio === "Portrait" ? "9/16" : "16/9"} rounded-lg mx-auto`}
               loading="lazy"
             ></iframe>
           </ModalContent>
