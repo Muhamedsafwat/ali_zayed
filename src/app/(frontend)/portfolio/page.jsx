@@ -2,6 +2,14 @@ import React from "react";
 import Portfolio from "../_components/sections/Portfolio";
 import Projects from "../_components/sections/Projects";
 import PageHeader from "../_common/PageHeader";
+
+const stats = [
+  { name: "Years in Market", value: "5+" },
+  { name: "Countries Served", value: "8" },
+  { name: "Satisfied Clients", value: "100+" },
+  { name: "Videos Produced", value: "+1500" },
+];
+
 const page = async () => {
   // Initialize with empty arrays as fallbacks
   let videos = [];
@@ -9,39 +17,63 @@ const page = async () => {
   let projects = [];
 
   try {
-    const videosRes = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/videos?limit=1000&depth=2`
-    );
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const videosRes = await fetch(`${baseUrl}/api/videos?limit=1000&depth=2`, {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (videosRes.ok) {
       const videosData = await videosRes.json();
       videos = videosData.docs || [];
+    } else {
+      console.warn(
+        `Failed to fetch videos: ${videosRes.status} ${videosRes.statusText}`
+      );
     }
   } catch (error) {
-    console.warn("Failed to fetch videos:", error);
+    console.warn("Failed to fetch videos:", error.message);
   }
 
   try {
-    const catRes = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`
-    );
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const catRes = await fetch(`${baseUrl}/api/categories`, {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (catRes.ok) {
       const categoriesData = await catRes.json();
       categories = categoriesData.docs || [];
+    } else {
+      console.warn(
+        `Failed to fetch categories: ${catRes.status} ${catRes.statusText}`
+      );
     }
   } catch (error) {
-    console.warn("Failed to fetch categories:", error);
+    console.warn("Failed to fetch categories:", error.message);
   }
 
   try {
-    const projectsRes = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects?depth=2`
-    );
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const projectsRes = await fetch(`${baseUrl}/api/projects?depth=2`, {
+      next: { revalidate: 60 },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (projectsRes.ok) {
       const projectsData = await projectsRes.json();
       projects = projectsData.docs || [];
+    } else {
+      console.warn(
+        `Failed to fetch projects: ${projectsRes.status} ${projectsRes.statusText}`
+      );
     }
   } catch (error) {
-    console.warn("Failed to fetch projects:", error);
+    console.warn("Failed to fetch projects:", error.message);
   }
 
   return (
@@ -66,10 +98,3 @@ const page = async () => {
 };
 
 export default page;
-
-const stats = [
-  { name: "Years in Market", value: "5+" },
-  { name: "Countries Served", value: "8" },
-  { name: "Satisfied Clients", value: "100+" },
-  { name: "Videos Produced", value: "+1500" },
-];

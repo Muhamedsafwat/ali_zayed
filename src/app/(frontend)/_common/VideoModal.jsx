@@ -12,6 +12,28 @@ import {
 import { urlToSrc } from "@/lib/utils";
 
 function VideoModal({ url, aspectRatio }) {
+  // Handle undefined or invalid URL
+  if (!url) {
+    return (
+      <div className="flex items-center justify-center mr-auto">
+        <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">
+          <span>No Video Available</span>
+        </div>
+      </div>
+    );
+  }
+
+  const videoSrc = urlToSrc(url);
+  if (!videoSrc) {
+    return (
+      <div className="flex items-center justify-center mr-auto">
+        <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">
+          <span>Invalid Video URL</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center mr-auto">
       <Modal>
@@ -30,7 +52,7 @@ function VideoModal({ url, aspectRatio }) {
             </h4>
 
             <iframe
-              src={urlToSrc(url)}
+              src={videoSrc}
               className={`h-[70vh] ${aspectRatio === "Portrait" ? "9/16" : "16/9"} rounded-lg mx-auto`}
               loading="lazy"
             ></iframe>
