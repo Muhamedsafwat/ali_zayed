@@ -142,32 +142,49 @@ function Portfolio({
               ) : (
                 <>
                   <ul className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
-                    {paginatedVideos.map((item, index) => (
-                      <div
-                        key={`${item?.link || index}-${currentPage}-${index}`}
-                        className="w-full relative h-80 group cursor-pointer"
-                        onClick={() => handleVideoClick(item)}
-                      >
-                        <img
-                          src={getDriveThumbnail(item?.link)}
-                          alt={`${item?.category?.name || "Video"} thumbnail`}
-                          className="object-cover w-full h-full rounded-lg transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <VideoModal
-                              url={item?.link}
-                              aspectRatio={
-                                item?.category?.aspect_ratio || "16/9"
-                              }
-                            />
+                    {paginatedVideos.map((item, index) => {
+                      // Ensure item exists and has required properties
+                      if (!item) {
+                        return null;
+                      }
+
+                      const thumbnailSrc = getDriveThumbnail(item?.link);
+                      const hasValidUrl =
+                        item?.link && typeof item.link === "string";
+
+                      return (
+                        <div
+                          key={`${item?.link || index}-${currentPage}-${index}`}
+                          className="w-full relative h-80 group cursor-pointer"
+                          onClick={() => handleVideoClick(item)}
+                        >
+                          <img
+                            src={thumbnailSrc || "/images/placeholder.jpg"}
+                            alt={`${item?.category?.name || "Video"} thumbnail`}
+                            className="object-cover w-full h-full rounded-lg transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              {hasValidUrl ? (
+                                <VideoModal
+                                  url={item.link}
+                                  aspectRatio={
+                                    item?.category?.aspect_ratio || "16/9"
+                                  }
+                                />
+                              ) : (
+                                <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">
+                                  <span>No Video Available</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                            {item?.category?.name || "Unknown"}
                           </div>
                         </div>
-                        <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-                          {item?.category?.name || "Unknown"}
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </ul>
 
                   {totalPages > 1 && (

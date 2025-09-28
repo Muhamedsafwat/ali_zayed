@@ -11,13 +11,24 @@ const ProjectCard = ({
   next,
   previous,
 }) => {
+  // Handle undefined or invalid thumbnail
+  if (!thumbnail || !thumbnail.url) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-gray-500 dark:text-gray-400 text-lg">
+          No project data available
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="relative w-full aspect-[16/6] rounded-xl">
         <Image
           className="rounded-xl shadow-2xl shadow-yellow-400/10 object-cover object-center"
           fill
-          alt="name"
+          alt={name || "Project"}
           src={thumbnail.url}
         />
       </div>
