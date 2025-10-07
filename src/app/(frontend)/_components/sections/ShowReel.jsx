@@ -6,28 +6,46 @@ import GlowingButton from "../../_common/ui/GlowingButton";
 
 const ShowReel = () => {
   return (
-    <div className="max-w-6xl mx-auto py-24">
-      <p className="text-4xl max-w-4xl leading-normal bg-gradient-to-b from-white/80 to-white bg-clip-text text-transparent">
+    <div className="max-w-6xl mx-auto px-4  py-24">
+      <p className="text-2xl  max-w-4xl leading-normal bg-gradient-to-b from-white/80 to-white bg-clip-text text-transparent">
         Rallying diverse teams, instilling a growth mindset, and turning
         ambitious visions into tangible realities. Let's roll up our sleeves and
         create something extraordinary!
       </p>
       <div
-        className="mt-20 aspect-[16/6] bg-cover bg-center rounded-2xl shadow-2xl shadow-yellow-400/10 hover:scale-[1.02] duration-200"
+        className="
+    mt-20 
+    bg-cover 
+    bg-center 
+    rounded-2xl 
+    shadow-2xl 
+    shadow-yellow-400/10 
+    hover:scale-[1.02] 
+    duration-200 
+    sm:aspect-[16/6]
+    aspect-[16/10]
+    bg-no-repeat 
+  "
         style={{
           backgroundImage: `url(https://i.ytimg.com/vi/9pDgYJwgqgE/maxresdefault.jpg)`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        <div className="flex flex-col items-start justify-center px-24 h-full bg-gradient-to-r from-black/30 via-black/30 to-transparent">
+        <div className="flex flex-col items-start justify-center px-4 sm:px-8 lg:px-24 h-full bg-gradient-to-r from-black/40 via-black/30 to-transparent">
           <Image
             alt="logo"
             src={featuredProjects[0].logo}
-            width={100}
-            height={150}
-            className="relative -left-4"
+            width={80}
+            height={120}
+            className="relative -left-2 sm:-left-4"
           />
-          <h3 className="text-4xl font-bold">{featuredProjects[0].title}</h3>
-          <p className="text-2xl">{featuredProjects[0].subtitle}</p>
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">
+            {featuredProjects[0].title}
+          </h3>
+          <p className="text-base sm:text-lg lg:text-2xl">
+            {featuredProjects[0].subtitle}
+          </p>
           <GlowingButton variant="secondary" className="mt-5">
             <div className="flex items-center gap-2">
               <Play size={20} /> Play Video

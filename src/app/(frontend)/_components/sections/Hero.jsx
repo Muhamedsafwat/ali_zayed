@@ -5,7 +5,7 @@ import GlowingButton from "../../_common/ui/GlowingButton";
 
 const Hero = () => {
   return (
-    <div className="w-full h-screen relative">
+    <div className="w-full h-screen relative overflow-hidden">
       {/* video */}
       <video
         autoPlay
@@ -21,10 +21,10 @@ const Hero = () => {
         ></source>
       </video>
       {/* content */}
-      <div className="absolute inset-0 bg-black/40">
+      <div className="absolute inset-0 bg-black/40 p-4">
         <div className="max-w-6xl mx-auto flex flex-col justify-center h-full">
           <p className="uppercase ">editor - producer - colorist</p>
-          <h1 className="text-6xl max-w-3xl font-semibold mt-5">
+          <h1 className="text-4xl lg:text-6xl max-w-3xl font-semibold mt-5">
             Cinematic brand stories optimized to engage
           </h1>
           <div className="mt-8 flex items-center gap-5">
@@ -40,14 +40,17 @@ const Hero = () => {
             </GlowingButton>
           </div>
         </div>
-        <div className="flex justify-around mt-auto -translate-y-24 max-w-6xl mx-auto">
+        <div className="flex justify-around  mt-auto -translate-y-24 gap-16 max-w-6xl mx-auto flex-wrap">
           {logos.map((item, index) => (
-            <div key={`logo_${index}`} className="relative h-16 aspect-video">
+            <div
+              key={`logo_${index}`}
+              className="relative flex -mt-24 h-16 aspect-video"
+            >
               <Image
                 alt="item"
                 src={item}
                 fill
-                className="object-contain grayscale"
+                className="object-contain  grayscale"
               />
             </div>
           ))}

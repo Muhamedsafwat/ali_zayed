@@ -4,7 +4,21 @@ import { SocialMediaLinks } from "./_components/SocialMediaLinks";
 import Contact from "./_components/Contact";
 import MapSection from "./_components/MapSection";
 import CTA from "../_components/sections/CTA";
+export async function generateMetadata({ params }) {
+  const title = "contact";
 
+  const descriptions =
+    "Get in touch to discuss your next project, collaboration, or any creative ideas you’d like to bring to life.";
+
+  return {
+    title: title,
+    description: descriptions,
+    openGraph: {
+      title: title,
+      description: descriptions,
+    },
+  };
+}
 const page = () => {
   return (
     <div>

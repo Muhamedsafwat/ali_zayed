@@ -11,7 +11,10 @@ const cairo = Cairo({
 });
 
 export const metadata = {
-  title: "Ali Zayed | علي زايد",
+  title: {
+    default: "Ali Zayed | علي زايد",
+    template: "Ali Zayed – %s",
+  },
   description:
     "Egypt-based Post Lead & Editor with a passion for crafting compelling narratives in the dynamic marketing industry.",
   keywords:

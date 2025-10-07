@@ -40,22 +40,26 @@ const ProjectCard = ({
           <ChevronRight />
         </button>
       </div>
-      <div className="flex items-start">
-        <div className="flex-1 border-r border-neutral-700 p-5">
+      <div className="flex flex-col md:flex-row items-start">
+        <div className="flex-1 border-b md:border-b-0 md:border-r border-neutral-700 p-5">
           <p className="uppercase tracking-wider">{type}</p>
-          <h3 className=" text-3xl font-semibold tracking-wide">{name}</h3>
-          <p className="mt-5">{description}</p>
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold tracking-wide">
+            {name}
+          </h3>
+          <p className="mt-5 text-sm md:text-base">{description}</p>
         </div>
-        <div className="flex-1 p-5">
-          <h3 className="font-semibold text-xl mb-5">More Details</h3>
-          <ul className="max-h-40 overflow-y-auto">
+        <div className="flex-1 p-5 w-full">
+          <h3 className="font-semibold text-xl mb-5 text-left">More Details</h3>
+          <ul className="max-h-60 w-full sm:max-h-40 md:overflow-y-auto">
             {details.map((item, index) => (
               <li
                 key={`detail_${index}`}
-                className="flex justify-between text-lg py-3"
+                className="flex flex-row justify-between gap-1 sm:gap-3 text-base sm:text-lg py-2 sm:py-3 text-start sm:text-left"
               >
-                <p>{item.title}</p>
-                <p>{item.content}</p>
+                <p className="font-medium">{item.title}</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {item.content}
+                </p>
               </li>
             ))}
           </ul>

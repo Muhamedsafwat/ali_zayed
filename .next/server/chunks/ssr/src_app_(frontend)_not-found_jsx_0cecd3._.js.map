@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/pro/ByteForce/ali_zayed/src/app/%28frontend%29/not-found.jsx"],"sourcesContent":["import Link from \"next/link\";\n\nexport default function NotFound() {\n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gray-50\">\n      <div className=\"text-center\">\n        <h1 className=\"text-9xl font-bold text-red-600\">404</h1>\n        <h2 className=\"text-2xl font-semibold text-gray-800 mt-4\">Not Found</h2>\n        <p className=\"text-gray-600 mt-4 max-w-md mx-auto\">\n          The page you're trying to visit doesn't exist!\n        </p>\n        <Link\n          href=\"/\"\n          className=\"inline-block mt-8 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors\"\n        >\n          Home Page\n        </Link>\n      </div>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;;8BACb,8OAAC;oBAAG,WAAU;8BAAkC;;;;;;8BAChD,8OAAC;oBAAG,WAAU;8BAA4C;;;;;;8BAC1D,8OAAC;oBAAE,WAAU;8BAAsC;;;;;;8BAGnD,8OAAC,4JAAA,CAAA,UAAI;oBACH,MAAK;oBACL,WAAU;8BACX;;;;;;;;;;;;;;;;;AAMT"}},
+    {"offset": {"line": 65, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

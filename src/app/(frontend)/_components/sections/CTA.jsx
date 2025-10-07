@@ -32,8 +32,8 @@ const CTA = () => {
             Boost your productivity. Start using our app today.
           </h2>
           <p className="mt-6 text-lg/8 text-pretty text-gray-300">
-            Ac euismod vel sit maecenas id pellentesque eu sed consectetur.
-            Malesuada adipiscing sagittis vel nulla.
+            Your idea deserves more than just a video, it deserves emotion,
+            story, and impact. : Let’s make it happen
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
             <GlowingButton href="/portfolio">Show Portfolio</GlowingButton>

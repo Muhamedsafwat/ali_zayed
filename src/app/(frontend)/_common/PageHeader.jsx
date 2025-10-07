@@ -18,7 +18,7 @@ export default function PageHeader({ img, title, description, stats }) {
         </div>
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
           {!!stats ? (
-            <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="mt-16 grid grid-cols-2 justify-items-center  gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat) => (
                 <div key={stat.name} className="flex flex-col-reverse gap-1">
                   <dt className="text-base/7 text-gray-300">{stat.name}</dt>

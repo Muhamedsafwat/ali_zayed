@@ -22,20 +22,25 @@ function Services() {
     beforeChange: (current, next) => setSlideIndex(next),
   };
   return (
-    <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0 overflow-x-hidden">
-      <p className=" tracking-wider text-center uppercase">
+    <div className="max-w-6xl mx-auto overflow-hidden py-10 lg:py-20 px-4 w-full">
+      <p className="tracking-wider text-center uppercase text-sm lg:text-base">
         Your one stop shop
       </p>
-      <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
+      <h1 className="text-2xl lg:text-6xl text-center mb-8 lg:mb-16 font-bold dark:text-white">
         Services
       </h1>
-      <div className="flex items-start gap-10">
-        <div className="basis-1/5">
-          <ul>
+      <div className="flex flex-col lg:flex-row items-center md:items-start gap-6 lg:gap-10">
+        {/* Service Titles */}
+        <div className="w-full md:basis-1/5">
+          <ul className="flex flex-row lg:flex-col justify-center md:justify-center items-center md:items-start gap-2 md:gap-5 p-2 md:pb-0 overflow-x-auto md:overflow-visible">
             {services.map((item, index) => (
               <li
                 key={`service_title_${index}`}
-                className={`py-5 text-xl border-b hover:border-purple-500 duration-150 cursor-pointer ${index == slideIndex ? "border-purple-500" : "border-transparent"}`}
+                className={`py-3 md:py-5 text-sm md:text-2xl whitespace-nowrap border-b-2 md:border-b hover:border-purple-500 duration-150 cursor-pointer min-w-fit ${
+                  index == slideIndex
+                    ? "border-purple-500"
+                    : "border-transparent"
+                }`}
                 onClick={() => sliderRef.slickGoTo(index)}
               >
                 {item.title}
@@ -43,7 +48,8 @@ function Services() {
             ))}
           </ul>
         </div>
-        <div className="slider-container basis-4/5">
+
+        <div className="w-full md:basis-4/5">
           <Slider
             ref={(slider) => {
               sliderRef = slider;
@@ -52,23 +58,25 @@ function Services() {
           >
             {services.map((item, index) => (
               <div key={`service_${index}`}>
-                <div className="px-20">
-                  <div className="relative w-full aspect-video mb-5">
+                <div className="px-4 sm:px-8 md:px-20">
+                  <div className="relative w-full max-w-4xl md:max-w-2xl lg:max-w-5xl mx-auto aspect-[16/9] mb-5 overflow-hidden px-2 sm:px-4 md:px-0">
                     <Image
                       alt={item.title}
                       fill
                       src={item.image}
-                      className="object-contain"
+                      className="object-contain transition-all duration-300"
+                      sizes="(max-width: 768px) 85vw, (max-width: 1024px) 70vw, 50vw"
                     />
                   </div>
+
                   <ul>
-                    {item.description.map((item, index) => (
+                    {item.description.map((desc, i) => (
                       <li
-                        key={`service_detail_${index}`}
-                        className="flex items-center gap-1 my-1"
+                        key={`service_detail_${i}`}
+                        className="flex items-start gap-2 md:gap-1 my-2 md:my-1 text-sm md:text-base"
                       >
-                        <ArrowRight />
-                        {item}
+                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0" />
+                        <span>{desc}</span>
                       </li>
                     ))}
                   </ul>
@@ -103,22 +111,32 @@ const services = [
     ],
     image: "/images/services/motion.png",
   },
+
   {
-    title: "Color Grading",
+    title: "Animations",
     description: [
-      "Proficiency in DaVinci Resolve",
-      "Visual style creation and shot matching",
-      "Skin tone correction",
+      "2D and 3D animation expertise",
+      "Character design, rigging, and motion graphics",
+      "Bringing stories to life through engaging visuals",
     ],
-    image: "/images/services/color.png",
+    image: "/images/services/animations.png",
   },
   {
-    title: "Post Producing",
+    title: "Directing",
     description: [
-      "Comprehensive project planning and coordination",
-      "Effective resource and budget management",
-      "Successful stakeholder collaboration",
+      "Creative direction from concept to final cut",
+      "Leading production teams with clear vision and storytelling focus",
+      "Experience across commercials, music videos, and short films",
     ],
-    image: "/images/services/post.png",
+    image: "/images/services/directing.png",
+  },
+  {
+    title: "Ads",
+    description: [
+      "Crafting impactful advertising campaigns",
+      "Expertise in visual storytelling for brand engagement",
+      "Optimized video formats for social media and broadcast platforms",
+    ],
+    image: "/images/services/Ads.png",
   },
 ];
