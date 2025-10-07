@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/pro/ByteForce/ali_zayed/src/app/%28payload%29/admin/%5B%5B...segments%5D%5D/page.tsx"],"sourcesContent":["/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */\n/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */\nimport type { Metadata } from 'next'\n\nimport config from '@payload-config'\nimport { generatePageMetadata, RootPage } from '@payloadcms/next/views'\n\nimport { importMap } from '../importMap.js'\n\ntype Args = {\n  params: Promise<{\n    segments: string[]\n  }>\n  searchParams: Promise<{\n    [key: string]: string | string[]\n  }>\n}\n\nexport const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>\n  generatePageMetadata({ config, params, searchParams })\n\nconst Page = ({ params, searchParams }: Args) =>\n  RootPage({ config, importMap, params, searchParams })\n\nexport default Page\n"],"names":[],"mappings":"AAAA,qDAAqD,GACrD,+DAA+D;;;;AAG/D;AACA;AAEA;AAFA;AAAA;;;;AAaO,MAAM,mBAAmB,CAAC,EAAE,MAAM,EAAE,YAAY,EAAQ,GAC7D,CAAA,GAAA,qKAAA,CAAA,uBAAoB,AAAD,EAAE;QAAE,QAAA,iHAAA,CAAA,UAAM;QAAE;QAAQ;IAAa;AAEtD,MAAM,OAAO,CAAC,EAAE,MAAM,EAAE,YAAY,EAAQ,GAC1C,CAAA,GAAA,sLAAA,CAAA,WAAQ,AAAD,EAAE;QAAE,QAAA,iHAAA,CAAA,UAAM;QAAE,WAAA,+IAAA,CAAA,YAAS;QAAE;QAAQ;IAAa;uCAEtC"}},
-    {"offset": {"line": 31, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

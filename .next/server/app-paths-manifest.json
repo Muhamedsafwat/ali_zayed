@@ -1,7 +1,0 @@
-{
-  "/(frontend)/about-me/page": "app/(frontend)/about-me/page.js",
-  "/(frontend)/page": "app/(frontend)/page.js",
-  "/(payload)/api/[...slug]/route": "app/(payload)/api/[...slug]/route.js",
-  "/(frontend)/contact/page": "app/(frontend)/contact/page.js",
-  "/(frontend)/portfolio/page": "app/(frontend)/portfolio/page.js"
-}
