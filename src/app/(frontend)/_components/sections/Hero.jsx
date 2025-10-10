@@ -63,9 +63,9 @@ const Hero = () => {
 export default Hero;
 
 const logos = [
-  "/images/logos/globe.png",
+  "/images/logos/nasa.png",
   "/images/logos/mokanik.png",
   "/images/logos/soor.png",
-  "/images/logos/taif.png",
-  "/images/logos/wekala.png",
+  "/images/logos/seven.png",
+  "/images/logos/mogul.png",
 ];
