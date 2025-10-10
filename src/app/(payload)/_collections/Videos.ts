@@ -11,6 +11,7 @@ const Videos: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
+    group: "videos",
   },
   fields: [
     {
