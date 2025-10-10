@@ -23,24 +23,26 @@ const Hero = () => {
       {/* content */}
       <div className="absolute inset-0 bg-black/40 p-4">
         <div className="max-w-6xl mx-auto flex flex-col justify-center h-full">
-          <p className="uppercase ">editor - producer - colorist</p>
+          <p className="uppercase ">
+            Creative Director - Motion Designer - Video Editor
+          </p>
           <h1 className="text-4xl lg:text-6xl max-w-3xl font-semibold mt-5">
-            Cinematic brand stories optimized to engage
+            Bringing your ideas to life.
           </h1>
           <div className="mt-8 flex items-center gap-5">
-            <GlowingButton>
+            <GlowingButton href="/portfolio">
               <div className="flex items-center gap-1">
                 Watch <Video size={20} />
               </div>
             </GlowingButton>
-            <GlowingButton variant="secondary">
+            <GlowingButton variant="secondary" href="/contact">
               <div className="flex items-center gap-1">
                 Contact me <Phone size={20} />
               </div>
             </GlowingButton>
           </div>
         </div>
-        <div className="flex justify-around  mt-auto -translate-y-24 gap-16 max-w-6xl mx-auto flex-wrap">
+        <div className="flex justify-around  mt-auto -translate-y-3 gap-16 max-w-6xl mx-auto flex-wrap">
           {logos.map((item, index) => (
             <div
               key={`logo_${index}`}

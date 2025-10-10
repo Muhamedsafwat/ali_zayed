@@ -62,7 +62,7 @@ function Portfolio({
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
+    <div className="max-w-8xl mx-auto py-20 px-10 w-full left-0 top-0">
       <p className=" tracking-wider text-center uppercase">{title}</p>
 
       <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
@@ -73,7 +73,7 @@ function Portfolio({
         <aside className="lg:basis-1/5 h-fit lg:sticky lg:top-20 order-2 lg:order-1">
           <ul className="space-y-2">
             <p className="text-lg mb-5 font-semibold border-b-purple-500/30 border-b-2 pb-3 shadow-lg shadow-purple-500/20">
-              Categories:
+              Category:
             </p>
             <li
               onClick={() => handleCategoryChange({})}

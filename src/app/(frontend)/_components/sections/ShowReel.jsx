@@ -46,7 +46,7 @@ const ShowReel = () => {
           <p className="text-base sm:text-lg lg:text-2xl">
             {featuredProjects[0].subtitle}
           </p>
-          <GlowingButton variant="secondary" className="mt-5">
+          <GlowingButton href="#" variant="secondary" className="mt-5">
             <div className="flex items-center gap-2">
               <Play size={20} /> Play Video
             </div>

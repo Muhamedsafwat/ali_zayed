@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 const SocialProof = () => {
   const stats = [
     {
-      number: 5,
+      number: 6,
       text: "Years in Market",
     },
     {
