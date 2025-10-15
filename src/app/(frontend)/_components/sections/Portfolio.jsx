@@ -1,8 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
-import { getDriveThumbnail } from "@/lib/utils";
+import {
+  getDriveThumbnail,
+  getYouTubeEmbedSrc,
+  getYouTubeThumbnail,
+  urlToSrc,
+} from "@/lib/utils";
 import VideoModal from "@/app/(frontend)/_common/VideoModal";
 
 function Portfolio({
@@ -148,9 +153,13 @@ function Portfolio({
                         return null;
                       }
 
-                      const thumbnailSrc = getDriveThumbnail(item?.link);
+                      const thumbnailSrc = item?.link
+                        ? getDriveThumbnail(item?.link)
+                        : getYouTubeThumbnail(item?.youtube_url);
                       const hasValidUrl =
-                        item?.link && typeof item.link === "string";
+                        (item?.link && typeof item.link === "string") ||
+                        (item?.youtube_url &&
+                          typeof item.youtube_url === "string");
 
                       return (
                         <div
@@ -167,10 +176,16 @@ function Portfolio({
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               {hasValidUrl ? (
                                 <VideoModal
-                                  url={item.link}
+                                  url={
+                                    item.link
+                                      ? urlToSrc(item.link)
+                                      : getYouTubeEmbedSrc(item.youtube_url)
+                                  }
                                   aspectRatio={
                                     item?.category?.aspect_ratio || "16/9"
                                   }
+                                  title={item.title}
+                                  description={item.description}
                                 />
                               ) : (
                                 <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">

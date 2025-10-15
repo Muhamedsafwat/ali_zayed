@@ -36,7 +36,11 @@ const Videos: CollectionConfig = {
       name: "link",
       type: "text",
       label: "Google Drive Link ( share -> copy link )",
-      required: true,
+    },
+    {
+      name: "youtube_url",
+      type: "text",
+      label: "Youtube Link ( share -> copy link )",
     },
   ],
 };
