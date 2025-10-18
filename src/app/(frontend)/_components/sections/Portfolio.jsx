@@ -182,7 +182,7 @@ function Portfolio({
                                       : getYouTubeEmbedSrc(item.youtube_url)
                                   }
                                   aspectRatio={
-                                    item?.category?.aspect_ratio || "16/9"
+                                    item?.category?.aspect_ratio || "Landscape"
                                   }
                                   title={item.title}
                                   description={item.description}

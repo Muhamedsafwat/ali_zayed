@@ -11,6 +11,7 @@ import {
 
 function VideoModal({ url, aspectRatio, title, description }) {
   // Handle undefined or invalid URL
+  console.log(aspectRatio);
   if (!url) {
     return (
       <div className="flex items-center justify-center mr-auto">
@@ -57,7 +58,7 @@ function VideoModal({ url, aspectRatio, title, description }) {
 
             <iframe
               src={url}
-              className={`h-[70vh] ${aspectRatio === "Portrait" ? "9/16" : "16/9"} rounded-lg mx-auto`}
+              className={`h-[70vh] ${aspectRatio === "Landscape" ? "aspect-video" : "aspect-[9/16]"} rounded-lg mx-auto`}
               loading="lazy"
             ></iframe>
           </ModalContent>
