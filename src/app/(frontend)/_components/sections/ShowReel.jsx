@@ -8,9 +8,9 @@ const ShowReel = () => {
   return (
     <div className="max-w-6xl mx-auto px-4  py-24">
       <p className="text-2xl  max-w-4xl leading-normal bg-gradient-to-b from-white/80 to-white bg-clip-text text-transparent">
-        Rallying diverse teams, instilling a growth mindset, and turning
-        ambitious visions into tangible realities. Let's roll up our sleeves and
-        create something extraordinary!
+        Every story begins with a vision, a spark that turns ideas into emotion.
+        It’s not just about what you see, but what you feel in every frame. This
+        is where creativity meets purpose
       </p>
       <div
         className="
@@ -46,7 +46,7 @@ const ShowReel = () => {
           <p className="text-base sm:text-lg lg:text-2xl">
             {featuredProjects[0].subtitle}
           </p>
-          <GlowingButton variant="secondary" className="mt-5">
+          <GlowingButton href="#" variant="secondary" className="mt-5">
             <div className="flex items-center gap-2">
               <Play size={20} /> Play Video
             </div>

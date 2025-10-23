@@ -15,7 +15,7 @@ export default async function Home() {
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const videosRes = await fetch(`${baseUrl}/api/videos?limit=1000&depth=2`, {
+    const videosRes = await fetch(`${baseUrl}/api/globals/videosOrder`, {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,8 @@ export default async function Home() {
     });
     if (videosRes.ok) {
       const videosData = await videosRes.json();
-      videos = videosData.docs || [];
+      console.log(videosData);
+      videos = videosData.ordered_videos.map((item) => item.video) || [];
     } else {
       console.warn(
         `Failed to fetch videos: ${videosRes.status} ${videosRes.statusText}`

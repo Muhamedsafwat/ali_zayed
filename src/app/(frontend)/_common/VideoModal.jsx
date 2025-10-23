@@ -9,10 +9,9 @@ import {
   ModalTrigger,
 } from "@/app/(frontend)/_common/ui/Modal";
 
-import { urlToSrc } from "@/lib/utils";
-
-function VideoModal({ url, aspectRatio }) {
+function VideoModal({ url, aspectRatio, title, description }) {
   // Handle undefined or invalid URL
+  console.log(aspectRatio);
   if (!url) {
     return (
       <div className="flex items-center justify-center mr-auto">
@@ -23,8 +22,7 @@ function VideoModal({ url, aspectRatio }) {
     );
   }
 
-  const videoSrc = urlToSrc(url);
-  if (!videoSrc) {
+  if (!url) {
     return (
       <div className="flex items-center justify-center mr-auto">
         <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">
@@ -47,13 +45,20 @@ function VideoModal({ url, aspectRatio }) {
         </ModalTrigger>
         <ModalBody>
           <ModalContent>
-            <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-              {/* {type.title} */}
-            </h4>
+            {title && (
+              <h4 className="text-lg md:text-2xl text-neutral-100 font-bold text-center mb-3">
+                {title}
+              </h4>
+            )}
+            {description && (
+              <p className="text-lg text-neutral-100 text-center mb-5">
+                {description}
+              </p>
+            )}
 
             <iframe
-              src={videoSrc}
-              className={`h-[70vh] ${aspectRatio === "Portrait" ? "9/16" : "16/9"} rounded-lg mx-auto`}
+              src={url}
+              className={`h-[70vh] ${aspectRatio === "Landscape" ? "aspect-video" : "aspect-[9/16]"} rounded-lg mx-auto`}
               loading="lazy"
             ></iframe>
           </ModalContent>

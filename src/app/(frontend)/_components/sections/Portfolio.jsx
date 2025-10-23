@@ -1,8 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
-import { getDriveThumbnail } from "@/lib/utils";
+import {
+  getDriveThumbnail,
+  getYouTubeEmbedSrc,
+  getYouTubeThumbnail,
+  urlToSrc,
+} from "@/lib/utils";
 import VideoModal from "@/app/(frontend)/_common/VideoModal";
 
 function Portfolio({
@@ -62,7 +67,7 @@ function Portfolio({
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
+    <div className="max-w-8xl mx-auto py-20 px-10 w-full left-0 top-0">
       <p className=" tracking-wider text-center uppercase">{title}</p>
 
       <h1 className="text-2xl md:text-6xl text-center mb-16 font-bold dark:text-white">
@@ -73,7 +78,7 @@ function Portfolio({
         <aside className="lg:basis-1/5 h-fit lg:sticky lg:top-20 order-2 lg:order-1">
           <ul className="space-y-2">
             <p className="text-lg mb-5 font-semibold border-b-purple-500/30 border-b-2 pb-3 shadow-lg shadow-purple-500/20">
-              Categories:
+              Category:
             </p>
             <li
               onClick={() => handleCategoryChange({})}
@@ -148,9 +153,13 @@ function Portfolio({
                         return null;
                       }
 
-                      const thumbnailSrc = getDriveThumbnail(item?.link);
+                      const thumbnailSrc = item?.link
+                        ? getDriveThumbnail(item?.link)
+                        : getYouTubeThumbnail(item?.youtube_url);
                       const hasValidUrl =
-                        item?.link && typeof item.link === "string";
+                        (item?.link && typeof item.link === "string") ||
+                        (item?.youtube_url &&
+                          typeof item.youtube_url === "string");
 
                       return (
                         <div
@@ -167,10 +176,16 @@ function Portfolio({
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               {hasValidUrl ? (
                                 <VideoModal
-                                  url={item.link}
-                                  aspectRatio={
-                                    item?.category?.aspect_ratio || "16/9"
+                                  url={
+                                    item.link
+                                      ? urlToSrc(item.link)
+                                      : getYouTubeEmbedSrc(item.youtube_url)
                                   }
+                                  aspectRatio={
+                                    item?.category?.aspect_ratio || "Landscape"
+                                  }
+                                  title={item.title}
+                                  description={item.description}
                                 />
                               ) : (
                                 <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">

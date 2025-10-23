@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   };
 }
 const stats = [
-  { name: "Years in Market", value: "5+" },
+  { name: "Years in Market", value: "6+" },
   { name: "Countries Served", value: "8" },
   { name: "Satisfied Clients", value: "100+" },
   { name: "Videos Produced", value: "+1500" },

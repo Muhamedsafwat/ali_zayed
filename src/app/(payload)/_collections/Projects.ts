@@ -11,6 +11,7 @@ const Projects: CollectionConfig = {
   },
   admin: {
     useAsTitle: "name",
+    group: "projects",
   },
   fields: [
     {

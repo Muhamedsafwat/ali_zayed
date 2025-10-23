@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { CollectionConfig } from "payload";
 
 const Videos: CollectionConfig = {
@@ -11,6 +12,38 @@ const Videos: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
+    group: "videos",
+  },
+  hooks: {
+    afterChange: [
+      async ({ req }) => {
+        const payload = req.payload;
+        const videos = await payload.find({
+          collection: "videos",
+          limit: 10000,
+        });
+
+        await payload.updateGlobal({
+          slug: "videosOrder",
+          data: {
+            ordered_videos: videos.docs.map((v) => ({ video: v.id })),
+          },
+        });
+      },
+    ],
+    afterDelete: [
+      async ({ req }) => {
+        const payload = req.payload;
+        const videos = await payload.find({ collection: "videos", limit: 0 });
+
+        await payload.updateGlobal({
+          slug: "videosOrder",
+          data: {
+            videos: videos.docs.map((v) => ({ video: v.id })),
+          },
+        });
+      },
+    ],
   },
   fields: [
     {
@@ -35,7 +68,11 @@ const Videos: CollectionConfig = {
       name: "link",
       type: "text",
       label: "Google Drive Link ( share -> copy link )",
-      required: true,
+    },
+    {
+      name: "youtube_url",
+      type: "text",
+      label: "Youtube Link ( share -> copy link )",
     },
   ],
 };

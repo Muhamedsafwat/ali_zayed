@@ -29,7 +29,7 @@ const CTA = () => {
         </svg>
         <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
           <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
-            Boost your productivity. Start using our app today.
+            Boost your productivity.
           </h2>
           <p className="mt-6 text-lg/8 text-pretty text-gray-300">
             Your idea deserves more than just a video, it deserves emotion,
@@ -45,7 +45,7 @@ const CTA = () => {
             </GlowingButton>{" "}
           </div>
         </div>
-        <div className="relative mt-16 flex-1 aspect-square lg:mt-8">
+        <div className="relative mt-16 flex-1 aspect-[4/3] lg:mt-8">
           <Image
             alt="App screenshot"
             src="/images/assets/cta.jpg"

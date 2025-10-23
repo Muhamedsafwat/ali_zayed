@@ -1,15 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
-import GlowingButton from "../../_common/ui/GlowingButton";
-
 const AboutMe = () => {
   return (
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-20 py-10 md:py-20 px-4 sm:px-6">
       {/* image */}
       <div className="relative w-full md:basis-1/3 aspect-[9/12] max-w-sm md:max-w-none mx-auto">
         <Image
-          src="/images/ali.webp"
+          src="/images/ali.JPG"
           alt="ali zayed"
           fill
           className="object-cover rounded-xl shadow-lg shadow-yellow-400/10 grayscale hover:grayscale-0 duration-300"

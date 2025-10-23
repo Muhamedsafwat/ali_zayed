@@ -37,24 +37,18 @@ export const metadata = {
       "Egypt-based Post Lead & Editor with a passion for crafting compelling narratives in the dynamic marketing industry.",
     url: "https://alizayed.net",
     siteName: "Ali Zayed",
-    //  images: [
-    //    {
-    //      url: "/img/logo.png",
-    //      width: 800,
-    //      height: 600,
-    //      alt: "Al Helal Systems Logo",
-    //    },
-    //  ],
+    images: [
+      {
+        url: "/favicon.png",
+        width: 600,
+        height: 600,
+        alt: "Al Helal Systems Logo",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
-  //  twitter: {
-  //    card: "summary_large_image",
-  //    title: "Al Helal Systems | انظمة الهلال للانذار والحريق",
-  //    description: "Leading provider of firefighting and alarm systems",
-  //    images: ["/img/logo.png"],
-  //    creator: "@alhelalsystems",
-  //  },
+
   robots: {
     index: true,
     follow: true,
@@ -67,8 +61,8 @@ export const metadata = {
     },
   },
   icons: {
-    icon: "/img/logo.png",
-    apple: "/img/logo.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
@@ -80,18 +74,18 @@ export default async function layout({ children }) {
     description:
       "Egypt-based Post Lead & Editor with a passion for crafting compelling narratives in the dynamic marketing industry.",
     url: "https://alizayed.net",
-    //logo: "https://alizayed.net/img/logo.png",
-    //  sameAs: [
-    //    "https://www.facebook.com/AlHelalSystems",
-    //    "https://www.linkedin.com/company/alhelalsystems",
-    //  ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+201028930205",
-      contactType: "customer service",
-      areaServed: "Egypt",
-      availableLanguage: ["English", "Arabic"],
-    },
+    logo: "https://alizayed.net/favicon.png",
+    //   sameAs: [
+    //     "https://www.facebook.com/AlHelalSystems",
+    //   "https://www.linkedin.com/company/alhelalsystems",
+    //   ],
+    // contactPoint: {
+    //   "@type": "ContactPoint",
+    //   telephone: "+201028930205",
+    //   contactType: "customer service",
+    //   areaServed: "Egypt",
+    //   availableLanguage: ["English", "Arabic"],
+    // },
   };
 
   return (
@@ -110,7 +104,7 @@ export default async function layout({ children }) {
       </head>
       <body
         data-theme="mytheme"
-        className={`${cairo.className} antialiased overscroll-none bg-[#111] text-white max-w-[100vwz] min-h-screen overflow-x-hidden`}
+        className={`${cairo.className} antialiased overscroll-none bg-[#111] text-white max-w-[100vw] min-h-screen overflow-x-hidden`}
       >
         <NavBar />
         <main>{children}</main>

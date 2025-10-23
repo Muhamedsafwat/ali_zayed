@@ -40,3 +40,31 @@ export function urlToSrc(url) {
     return null;
   }
 }
+
+export function getYouTubeThumbnail(url, quality = "hqdefault") {
+  if (!url) return null;
+  try {
+    const videoIdMatch = url.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/|v\/))([\w-]{11})/
+    );
+    const videoId = videoIdMatch ? videoIdMatch[1] : null;
+    if (!videoId) return null;
+    return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
+  } catch {
+    return null;
+  }
+}
+
+export function getYouTubeEmbedSrc(url) {
+  if (!url) return null;
+  try {
+    const videoIdMatch = url.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=|embed\/|v\/))([\w-]{11})/
+    );
+    const videoId = videoIdMatch ? videoIdMatch[1] : null;
+    if (!videoId) return null;
+    return `https://www.youtube.com/embed/${videoId}`;
+  } catch {
+    return null;
+  }
+}

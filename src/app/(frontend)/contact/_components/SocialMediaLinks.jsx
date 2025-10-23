@@ -15,21 +15,21 @@ export function SocialMediaLinks() {
       icon: (
         <IconBrandFacebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://www.facebook.com/profile.php?id=61564163863329",
+      href: "https://www.facebook.com/ali.zayed.274536/",
     },
     {
       title: "Linkedin",
       icon: (
         <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://www.linkedin.com/company/byteforce0/",
+      href: "https://www.linkedin.com/in/ali-zayed-65b173289/",
     },
     {
       title: "Instagram",
       icon: (
         <IconBrandInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://www.instagram.com/byteforce__/",
+      href: "https://www.instagram.com/alizayed_19/",
     },
 
     {
@@ -37,14 +37,14 @@ export function SocialMediaLinks() {
       icon: (
         <IconBrandTiktok className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://www.tiktok.com/@byteforce__",
+      href: "https://www.tiktok.com/@ali_zayed19?_t=ZS-90SXf80S9rj&_r=1",
     },
     {
       title: "Whatsapp",
       icon: (
         <IconBrandWhatsapp className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "https://wa.me/201028930205",
+      href: "https://wa.me/201006703461",
     },
   ];
   return (
