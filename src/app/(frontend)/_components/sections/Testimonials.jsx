@@ -23,6 +23,14 @@ const Testimonials = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    appendDots: (dots) => (
+      <div>
+        <ul className="!m-0 !p-0 !flex justify-center gap-3 mt-4">{dots}</ul>
+      </div>
+    ),
+    customPaging: (i) => (
+      <div className="lg:hidden w-3 h-3 rounded-full bg-gray-500 hover:bg-white transition-all duration-300 cursor-pointer"></div>
+    ),
   };
 
   return (
@@ -51,10 +59,10 @@ const Testimonials = () => {
             ))}
           </Slider>
           <div
-            className={`flex pointer-events-none absolute z-20 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[30%] md:-translate-y-[50%] justify-between w-[95%] md:w-[80%] duration-300`}
+            className={`hidden lg:flex pointer-events-none absolute z-20 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[30%] md:-translate-y-[50%] justify-between w-[95%] md:w-[80%] duration-300`}
           >
             <button
-              className="btn pointer-events-auto bg-neutral-950 border-2 text-white duration-300 w-10 h-10 md:w-16 md:h-16 rounded-full shadow-xl pl-[7px] md:pl-4"
+              className="btn right-0 pointer-events-auto bg-neutral-950 border-2 text-white duration-300 w-10 h-10 md:w-16 md:h-16 rounded-full shadow-xl pl-[7px] md:pl-4"
               onClick={previous}
             >
               <ChevronLeft />
