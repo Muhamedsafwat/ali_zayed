@@ -15,15 +15,17 @@ export default async function Home() {
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const videosRes = await fetch(`${baseUrl}/api/globals/videosOrder`, {
-      next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const videosRes = await fetch(
+      `${baseUrl}/api/globals/videosOrder?depth=3`,
+      {
+        next: { revalidate: 60 },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (videosRes.ok) {
       const videosData = await videosRes.json();
-      console.log(videosData);
       videos = videosData.ordered_videos.map((item) => item.video) || [];
     } else {
       console.warn(
@@ -36,7 +38,7 @@ export default async function Home() {
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const catRes = await fetch(`${baseUrl}/api/categories`, {
+    const catRes = await fetch(`${baseUrl}/api/categories?depth=2`, {
       next: { revalidate: 60 },
       headers: {
         "Content-Type": "application/json",

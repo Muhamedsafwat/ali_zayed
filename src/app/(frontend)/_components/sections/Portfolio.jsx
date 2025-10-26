@@ -17,19 +17,30 @@ function Portfolio({
   title,
   subTitle,
 }) {
-  const [selectedCategory, setSelectedCategory] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-
   // Ensure videos and categories are arrays and have the expected structure
   const safeVideos = Array.isArray(videos) ? videos : [];
   const safeCategories = Array.isArray(categories) ? categories : [];
 
+  // Add "Highlights" as the first category option if it doesn't exist
+  const categoriesWithHighlights = safeCategories.some(
+    (cat) => cat.name === "Highlights"
+  )
+    ? safeCategories
+    : [{ name: "Highlights", isDefault: true }, ...safeCategories];
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    categoriesWithHighlights[0]
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
   const filteredVideos = !selectedCategory.name
     ? safeVideos
-    : safeVideos.filter(
-        (video) => video?.category?.name === selectedCategory?.name
-      );
+    : selectedCategory.name === "Highlights"
+      ? safeVideos.filter((video) => video?.highlight === true)
+      : safeVideos.filter(
+          (video) => video?.category?.name === selectedCategory?.name
+        );
 
   const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -54,7 +65,7 @@ function Portfolio({
   };
 
   // If no data is available, show a fallback
-  if (safeVideos.length === 0 || safeCategories.length === 0) {
+  if (safeVideos.length === 0) {
     return (
       <div className="max-w-6xl mx-auto py-20 px-4 w-full left-0 top-0">
         <div className="text-center py-12">
@@ -80,22 +91,8 @@ function Portfolio({
             <p className="text-lg mb-5 font-semibold border-b-purple-500/30 border-b-2 pb-3 shadow-lg shadow-purple-500/20">
               Category:
             </p>
-            <li
-              onClick={() => handleCategoryChange({})}
-              className={`pl-0 hover:pl-3 py-3 px-5 bg-gradient-to-r hover:from-purple-500/20 to-transparent duration-150 rounded-md border border-purple-500 border-opacity-0 hover:border-opacity-50 cursor-pointer transition-all ${
-                !selectedCategory?.name
-                  ? "from-purple-500/20 border-opacity-50 bg-purple-500/10 pl-3"
-                  : ""
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span>All Videos</span>
-                <span className="text-sm text-gray-500">
-                  ({safeVideos.length})
-                </span>
-              </div>
-            </li>
-            {safeCategories.map((item, index) => (
+
+            {categoriesWithHighlights.map((item, index) => (
               <li
                 key={index}
                 onClick={() => handleCategoryChange(item)}
@@ -108,15 +105,6 @@ function Portfolio({
               >
                 <div className="flex items-center justify-between">
                   <span>{item?.name || "Unnamed Category"}</span>
-                  <span className="text-sm text-gray-500">
-                    (
-                    {
-                      safeVideos.filter(
-                        (video) => video?.category?.name === item?.name
-                      ).length
-                    }
-                    )
-                  </span>
                 </div>
               </li>
             ))}

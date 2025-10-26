@@ -74,6 +74,13 @@ const Videos: CollectionConfig = {
       type: "text",
       label: "Youtube Link ( share -> copy link )",
     },
+    {
+      name: "highlight",
+      type: "checkbox",
+      admin: {
+        position: "sidebar",
+      },
+    },
   ],
 };
 
