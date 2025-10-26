@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-dots li.slick-active div {
+  background-color: white !important;
+  transform: scale(1.2);
+}
