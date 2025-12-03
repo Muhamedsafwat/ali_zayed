@@ -8,62 +8,34 @@ import Testimonials from "./_components/sections/Testimonials";
 import Projects from "./_components/sections/Projects";
 
 export default async function Home() {
-  // Initialize with empty arrays as fallbacks
-  let videos = [];
-  let categories = [];
-  let projects = [];
+  // Global videosOrder
+  let videosOrder = null;
 
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const videosRes = await fetch(
-      `${baseUrl}/api/globals/videosOrder?depth=3`,
-      {
-        next: { revalidate: 60 },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (videosRes.ok) {
-      const videosData = await videosRes.json();
-      videos = videosData.ordered_videos.map((item) => item.video) || [];
-    } else {
-      console.warn(
-        `Failed to fetch videos: ${videosRes.status} ${videosRes.statusText}`
-      );
-    }
-  } catch (error) {
-    console.warn("Failed to fetch videos:", error.message);
-  }
-
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const catRes = await fetch(`${baseUrl}/api/categories?depth=2`, {
+    const res = await fetch(`${baseUrl}/api/globals/videosOrder?depth=2`, {
       next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
-    if (catRes.ok) {
-      const categoriesData = await catRes.json();
-      categories = categoriesData.docs || [];
+
+    if (res.ok) {
+      videosOrder = await res.json();
     } else {
-      console.warn(
-        `Failed to fetch categories: ${catRes.status} ${catRes.statusText}`
-      );
+      console.warn(`Failed to fetch videosOrder: ${res.status}`);
     }
-  } catch (error) {
-    console.warn("Failed to fetch categories:", error.message);
+  } catch (err) {
+    console.warn("Failed to fetch videosOrder:", err);
   }
 
+  // Optional: fetch projects (keep as in original)
+  let projects = [];
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const projectsRes = await fetch(`${baseUrl}/api/projects?depth=2`, {
       next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
+
     if (projectsRes.ok) {
       const projectsData = await projectsRes.json();
       projects = projectsData.docs || [];
@@ -83,8 +55,7 @@ export default async function Home() {
       <SocialProof />
       <Services />
       <Portfolio
-        videos={videos}
-        categories={categories}
+        categoriesData={videosOrder?.categories || []}
         title="Portfolio"
         subTitle="See My Videos"
       />

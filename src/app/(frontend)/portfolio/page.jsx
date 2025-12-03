@@ -24,59 +24,34 @@ const stats = [
 ];
 
 const page = async () => {
-  // Initialize with empty arrays as fallbacks
-  let videos = [];
-  let categories = [];
+  // Global videosOrder
+  let videosOrder = null;
+
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const res = await fetch(`${baseUrl}/api/globals/videosOrder?depth=2`, {
+      next: { revalidate: 60 },
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (res.ok) {
+      videosOrder = await res.json();
+    } else {
+      console.warn(`Failed to fetch videosOrder: ${res.status}`);
+    }
+  } catch (err) {
+    console.warn("Failed to fetch videosOrder:", err);
+  }
+
+  // Optional: fetch projects (keep as in original)
   let projects = [];
-
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const videosRes = await fetch(`${baseUrl}/api/videos?limit=1000&depth=2`, {
-      next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (videosRes.ok) {
-      const videosData = await videosRes.json();
-      videos = videosData.docs || [];
-    } else {
-      console.warn(
-        `Failed to fetch videos: ${videosRes.status} ${videosRes.statusText}`
-      );
-    }
-  } catch (error) {
-    console.warn("Failed to fetch videos:", error.message);
-  }
-
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const catRes = await fetch(`${baseUrl}/api/categories`, {
-      next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (catRes.ok) {
-      const categoriesData = await catRes.json();
-      categories = categoriesData.docs || [];
-    } else {
-      console.warn(
-        `Failed to fetch categories: ${catRes.status} ${catRes.statusText}`
-      );
-    }
-  } catch (error) {
-    console.warn("Failed to fetch categories:", error.message);
-  }
-
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
     const projectsRes = await fetch(`${baseUrl}/api/projects?depth=2`, {
       next: { revalidate: 60 },
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
+
     if (projectsRes.ok) {
       const projectsData = await projectsRes.json();
       projects = projectsData.docs || [];
@@ -98,8 +73,7 @@ const page = async () => {
         img="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
       />
       <Portfolio
-        videos={videos}
-        categories={categories}
+        categoriesData={videosOrder?.categories || []}
         subTitle="Videos"
         itemsPerPage={15}
       />
