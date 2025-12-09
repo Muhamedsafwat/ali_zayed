@@ -28,9 +28,9 @@ const page = async () => {
   let videosOrder = null;
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const res = await fetch(`${baseUrl}/api/globals/videosOrder?depth=2`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 0 },
       headers: { "Content-Type": "application/json" },
     });
 
@@ -46,9 +46,9 @@ const page = async () => {
   // Optional: fetch projects (keep as in original)
   let projects = [];
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const projectsRes = await fetch(`${baseUrl}/api/projects?depth=2`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 0 },
       headers: { "Content-Type": "application/json" },
     });
 

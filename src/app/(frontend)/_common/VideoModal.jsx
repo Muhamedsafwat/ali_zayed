@@ -11,7 +11,6 @@ import {
 
 function VideoModal({ url, aspectRatio, title, description }) {
   // Handle undefined or invalid URL
-  console.log(aspectRatio);
   if (!url) {
     return (
       <div className="flex items-center justify-center mr-auto">

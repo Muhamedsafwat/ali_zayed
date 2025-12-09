@@ -55,9 +55,7 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
     setCurrentPage(newPage);
   };
 
-  const handleVideoClick = (video) => {
-    console.log(video);
-  };
+  const handleVideoClick = (video) => {};
 
   if (safeCategories.length === 0) {
     return (
