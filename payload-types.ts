@@ -89,8 +89,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    videosOrder: VideosOrder;
+  };
+  globalsSelect: {
+    videosOrder: VideosOrderSelect<false> | VideosOrderSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -158,7 +162,8 @@ export interface Video {
   title?: string | null;
   description?: string | null;
   category: string | Category;
-  link: string;
+  link?: string | null;
+  youtube_url?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -306,6 +311,7 @@ export interface VideosSelect<T extends boolean = true> {
   description?: T;
   category?: T;
   link?: T;
+  youtube_url?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -374,6 +380,36 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videosOrder".
+ */
+export interface VideosOrder {
+  id: string;
+  ordered_videos?:
+    | {
+        video: string | Video;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videosOrder_select".
+ */
+export interface VideosOrderSelect<T extends boolean = true> {
+  ordered_videos?:
+    | T
+    | {
+        video?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
