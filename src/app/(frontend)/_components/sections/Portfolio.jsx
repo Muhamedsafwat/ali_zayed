@@ -13,29 +13,12 @@ import VideoModal from "@/app/(frontend)/_common/VideoModal";
 function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
   const safeCategories = Array.isArray(categoriesData) ? categoriesData : [];
 
-  // Add "Highlights" as virtual category
-  const categoriesWithHighlights = safeCategories.some(
-    (cat) => cat.name === "Highlights"
-  )
-    ? safeCategories
-    : [{ name: "Highlights", isDefault: true, videos: [] }, ...safeCategories];
-
-  const [selectedCategory, setSelectedCategory] = useState(
-    categoriesWithHighlights[0]
-  );
+  const [selectedCategory, setSelectedCategory] = useState(safeCategories[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   // Filter videos based on selected category
-  const filteredVideos =
-    !selectedCategory?.name || categoriesWithHighlights.length === 0
-      ? []
-      : selectedCategory.name === "Highlights"
-        ? categoriesWithHighlights
-            .flatMap((cat) => cat.videos || [])
-            .filter((v) => v.video?.highlight)
-            .map((v) => v.video)
-        : (selectedCategory.videos || []).map((v) => v.video);
+  const filteredVideos = !selectedCategory?.name ? [] : selectedCategory.videos;
 
   const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -55,7 +38,9 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
     setCurrentPage(newPage);
   };
 
-  const handleVideoClick = (video) => {};
+  const handleVideoClick = (video) => {
+    console.log(video);
+  };
 
   if (safeCategories.length === 0) {
     return (
@@ -85,7 +70,7 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
               Category:
             </p>
 
-            {categoriesWithHighlights.map((item, index) => (
+            {safeCategories.map((item, index) => (
               <li
                 key={index}
                 onClick={() => handleCategoryChange(item)}
@@ -128,23 +113,24 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
                   {paginatedVideos.map((item, index) => {
                     if (!item) return null;
 
-                    const thumbnailSrc = item?.link
-                      ? getDriveThumbnail(item?.link)
-                      : getYouTubeThumbnail(item?.youtube_url);
+                    const thumbnailSrc = item?.video?.link
+                      ? getDriveThumbnail(item?.video?.link)
+                      : getYouTubeThumbnail(item?.video?.youtube_url);
                     const hasValidUrl =
-                      (item?.link && typeof item.link === "string") ||
-                      (item?.youtube_url &&
-                        typeof item.youtube_url === "string");
+                      (item?.video?.link &&
+                        typeof item.video.link === "string") ||
+                      (item?.video?.youtube_url &&
+                        typeof item.video.youtube_url === "string");
 
                     return (
                       <div
-                        key={`${item?.id || index}-${currentPage}-${index}`}
+                        key={`${item?.video?.id || index}-${currentPage}-${index}`}
                         className="w-full relative h-80 group cursor-pointer"
                         onClick={() => handleVideoClick(item)}
                       >
                         <img
                           src={thumbnailSrc || "/images/placeholder.jpg"}
-                          alt={`${item?.category?.name || "Video"} thumbnail`}
+                          alt={`${item?.video?.category?.name || "Video"} thumbnail`}
                           className="object-cover w-full h-full rounded-lg transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
@@ -152,15 +138,16 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
                             {hasValidUrl ? (
                               <VideoModal
                                 url={
-                                  item.link
-                                    ? urlToSrc(item.link)
-                                    : getYouTubeEmbedSrc(item.youtube_url)
+                                  item.video.link
+                                    ? urlToSrc(item.video.link)
+                                    : getYouTubeEmbedSrc(item.video.youtube_url)
                                 }
                                 aspectRatio={
-                                  item?.category?.aspect_ratio || "Landscape"
+                                  item?.video?.category?.aspect_ratio ||
+                                  "Landscape"
                                 }
-                                title={item.title}
-                                description={item.description}
+                                title={item.video.title}
+                                description={item.video.description}
                               />
                             ) : (
                               <div className="bg-gray-500 text-white border-2 border-neutral-300 flex justify-center px-4 py-2 rounded">
@@ -170,7 +157,7 @@ function Portfolio({ categoriesData = [], itemsPerPage = 9, title, subTitle }) {
                           </div>
                         </div>
                         <div className="absolute bottom-2 left-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-                          {item?.category?.name || "Unknown"}
+                          {item?.video?.category?.name || "Unknown"}
                         </div>
                       </div>
                     );
